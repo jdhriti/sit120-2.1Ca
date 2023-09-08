@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Vue 3 Demo</title>
+    <script src="https://unpkg.com/vue@3/dist/vue.global.js"></script>
+</head>
+<body>
+    <div id="app">
+        <!-- Conditional Rendering -->
+        <h1 v-if="showHeader">Conditional Rendering</h1>
+        <h1 v-else>Heading is now hidden</h1>
+        
+        <button @click="toggleHeader">Toggle Heading</button>
+        
+        <p v-show="showParagraph">Dhriti(Dree) SIT120 : this text uis shown by using the concept of v-show.</p>
+        <button @click="toggleparah">Toggle paragraph</button>
+
+        <h1>List with v-for</h1>
+        <ul>
+            <li v-for="item in items" :key="item.id">{{ item.text }}</li>
+        </ul>
+        
+
+        <div v-if="showListWithVif">
+            <h1>List with v-if and v-for</h1>
+            <ul>
+                <li v-for="item in itemsWithVif" :key="item.id">{{ item.text }}</li>
+            </ul>
+        </div>
+        <button @click="toggleitems">Toggle List</button>
+        
+        <!-- Form Input Handling -->
+        <h1>v-model inout handling</h1>
+        <input type="text" v-model="message" placeholder="Enter text">
+        <p>You are typing: {{ message }}</p>
+    </div>
+
+    <script>
+        const app = Vue.createApp({
+            data() {
+                return {
+                    showHeader: true,
+                    showParagraph: true,
+                    showListWithVif: true,
+                    message: "",
+                    items: [
+                        { id: 1, text: "SIT120" },
+                        { id: 2, text: "SIT182" },
+                        { id: 3, text: "SIT224" }
+                    ],
+                    itemsWithVif: [
+                        { id: 4, text: "SIT120 (v-if)" },
+                        { id: 5, text: "SIT182 (v-if)" },
+                        { id: 6, text: "SIT224 (v-if)" }
+                    ]
+                };
+            },
+            methods: {
+                toggleHeader() {
+                    this.showHeader = !this.showHeader;
+                },
+                toggleparah() {
+                    this.showParagraph = !this.showParagraph;
+                },
+                toggleitems() {
+                    this.showListWithVif = !this.showListWithVif
+                }
+
+            }
+        });
+
+        app.mount("#app");
+    </script>
+</body>
+</html>
